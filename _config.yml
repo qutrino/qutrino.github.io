@@ -1,5 +1,5 @@
 title: Deep Challenge
-description: 딥러닝을 공부해 나가고 있는 Taeil Hur의 블로그입니다.
+description: 딥러닝을 공부하는 Taeil Hur의 블로그입니다.
 show_downloads: true
 
 baseurl: "" # "/cayman-blog" # change this to the subpath of your site, e.g. /blog. Leave it empty if you don't need it.
@@ -17,7 +17,7 @@ theme: # leave it empty
 author: "Taeil Hur"
 image: /thumbnail-jumbo.png
 twitter:
-  username: lorepirri
+  username: 
 #  site:
 facebook:
   #publisher: 1592372034171500
