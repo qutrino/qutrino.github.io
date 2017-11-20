@@ -28,8 +28,8 @@ title: "NIPS 2017:Learn to Run 참가기"
 - 1라운드에서의 기록이 15m이상인 팀만이 2라운드로 진출
 
 # 최종 참가 결과
-- 1라운드: 28위 ( 3회 평균 28.14m )
-- 2라운드(최종): 19위 (10회 평균 24.80m ) 
+- [1라운드](https://www.crowdai.org/challenges/nips-2017-learning-to-run/leaderboards?challenge_round_id=1): 28위 ( 3회 평균 28.14m )
+- [2라운드(최종)](https://www.crowdai.org/challenges/nips-2017-learning-to-run/leaderboards): 19위 (10회 평균 24.80m ) 
 - 아래는 2라운드 5번의 submission 기회 중 첫번째 submission의 로컬 시뮬레이션 결과임. 실제로 평가된 시뮬레이션 영상들은 NIPS 2017 conference와 함께 공개될 예정이라고 함.
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <video autoplay="autoplay" loop="loop" controls="controls" width="798" height="209">
@@ -78,7 +78,7 @@ title: "NIPS 2017:Learn to Run 참가기"
   
 ## Hyperparameter 및 network 수정
 
-- actor learning rate, critic learning rate, network update rate tau
+- actor learning rate, critic learning rate, reward discount, network update rate tau
   - 병렬화를 감안하여도 시뮬레이션 환경이 빠른 편이 아니었기 때문에, 하이퍼 파라미터를 하나씩 바꿔보면서 나아지는 방형으로 조금씩 수정하였음.
 
 - noise
