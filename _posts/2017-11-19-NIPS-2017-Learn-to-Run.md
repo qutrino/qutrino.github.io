@@ -79,7 +79,7 @@ title: "NIPS 2017:Learn to Run 참가기"
 ## Hyperparameter 및 network 수정
 
 - actor learning rate, critic learning rate, reward discount, network update rate tau
-  - 병렬화를 감안하여도 시뮬레이션 환경이 빠른 편이 아니었기 때문에, 하이퍼 파라미터를 하나씩 바꿔보면서 나아지는 방형으로 조금씩 수정하였음.
+  - 병렬화를 감안하여도 시뮬레이션 환경이 빠른 편이 아니었기 때문에, 하이퍼 파라미터를 하나씩 바꿔보면서 나아지는 방향으로 조금씩 수정하였음.
 
 - noise
   - 여러가지 시도를 해보다, Ornstein Uhlenbeck Process를 사용하게 되었고, 노이즈 크기를 바꾸는 수정을 가장 많이 하였음.
