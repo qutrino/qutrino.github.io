@@ -65,6 +65,10 @@ title: "NIPS 2017:Learn to Run 참가기"
 	| 1            | 로컬 PC   | env simul. 화면에 표시되게 하여 모니터링 용도도 겸함.  |
 	| 2  ~ 최대 200        | 5~8개의 aws c4.8xlarge 서버    | env simul. without visualization   |
 
+- 로컬PC와 aws머신을 동시에 이용하여 학습하였기 때문에, 네트워크 속도를 고려하여 한국 region의 서버를 이용.
+- 초반에는 8대의 c4.8xlarge (시간당 1.8달러)를 사용하다, 2라운드에서는 비용의 부담을 느껴 5대의 c4.8xlarge 서버를 사용하였음.
+- 2,000달러이상의 aws 서비스요금 과금 예정임. ㅠ  
+
 ## Preprocessing of observation
 - 앞서 언급한 [Qin Yongliang](https://github.com/ctmakro)의 글과 코드를 많이 참조하였음.
 - observation은 신체부위의 위치 및 속도, 각속도, 다음 장애물의 위치 등을 포함하여, 41차원의 vector.
