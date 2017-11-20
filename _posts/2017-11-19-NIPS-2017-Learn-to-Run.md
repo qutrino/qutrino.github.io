@@ -10,7 +10,7 @@ title: "NIPS 2017:Learn to Run 참가기"
 # NIPS 2017:Learn to Run
 
 ### 개요
-*[opensim](http://opensim.stanford.edu/)이라는 신체 시뮬레이터를 기반으로 openai gym과 유사한 강화학습 환경 osim-rl을 주최측에서 제공하고, 그 환경 내에서 강화학습을 이용, 인간신체의 근육자극을 조절하여 장애물을 넘으면서 달리게 만드는것이 목표인 대회입니다. 구체적인 환경의 정의는 아래와 같습니다.*
+*[opensim](http://opensim.stanford.edu/)이라는 인체 시뮬레이터를 기반으로, 인체의 근육자극을 조절하여 장애물을 넘으면서 달리게 만드는것이 목표인 대회입니다. 주최측에서 openai gym과 유사한 강화학습 환경 osim-rl을 제공하였으며, 그 환경의 구체적인 정의는 아래와 같습니다.*
   - Reward : x축 방향으로 골반이 이동한 거리 - 인대 힘(ligament force)의 사용량
   - Observation: 신체 각부위의 x, y좌표 및 속도, 각속도, 다음 장애물의 위치정보: 총합 41 차원 
   - Action: 근육자극 정도. (18차원)
@@ -44,7 +44,7 @@ title: "NIPS 2017:Learn to Run 참가기"
 
 - 강화학습에 대한 교과서적인 지식밖에 없었으므로, 공식페이지의 문서 및 예제코드 습득.
 - 늦은 출발을 만회하기 위하여, 공식 페이지의 discussion channel, 공식 github repo의 issue, gitter 대화내용 등은 대부분 읽음.
-- 참가자 중 상위 랭커 중 한명인 [Qin Yongliang](https://github.com/ctmakro)가 자신의 모형 및 [코드](https://github.com/ctmakro/stanford-osrl)를 공개해 놓고 있는 상황이라 아주 큰 도움이 되었음. 실제 본인(나)의 구현도 Qin Yongliang의 구현에 크게 벗어나지 않고 새로운 것을 더하지 못한 상황에서 대회가 마무리 되었음.
+- 참가자 중 상위 랭커 중 한명인 [Qin Yongliang](https://github.com/ctmakro)가 자신의 모형 및 [코드](https://github.com/ctmakro/stanford-osrl)를 공개해 놓고 있는 상황이라 아주 큰 참고가 되었음.
 
 - 그나마 이 문제와 가장 비슷하다고 할 수 있는 [mujuco](http://www.mujoco.org/)-humanoid 의 결과를 위주로 논문 서베이.
 - 적용 알고리즘을 고르기 위하여 [https://gym.openai.com/envs/Humanoid-v1/](https://gym.openai.com/envs/Humanoid-v1/) 등의 공개된 정보 습득
@@ -66,8 +66,8 @@ title: "NIPS 2017:Learn to Run 참가기"
 	| 2  ~ 최대 200        | 5~8개의 aws c4.8xlarge 서버    | env simul. without visualization   |
 
 - 로컬PC와 aws머신을 동시에 이용하여 학습하였기 때문에, 네트워크 속도를 고려하여 한국 region의 서버를 이용.
-- 초반에는 8대의 c4.8xlarge (시간당 1.8달러)를 사용하다, 2라운드에서는 비용의 부담을 느껴 5대의 c4.8xlarge 서버를 사용하였음.
-- 2,000달러이상의 aws 서비스요금 과금 예정임. ㅠ  
+- 초반에는 8대의 c4.8xlarge(시간당 1.8달러, 18core, 36 hyper-thread core)를 사용하다, 2라운드에서는 비용의 부담을 느껴 5대의 c4.8xlarge 서버를 사용하였음.
+- 2,000달러이상의 aws 서비스요금 결제 예정임. ㅠ  
 
 ## Preprocessing of observation
 - 앞서 언급한 [Qin Yongliang](https://github.com/ctmakro)의 글과 코드를 많이 참조하였음.
@@ -83,6 +83,7 @@ title: "NIPS 2017:Learn to Run 참가기"
 
 - noise
   - 여러가지 시도를 해보다, Ornstein Uhlenbeck Process를 사용하게 되었고, 노이즈 크기를 바꾸는 수정을 가장 많이 하였음.
+  - Ornstein Uhlenbeck Process 처럼 트렌드가 있는 노이즈를 써야 효과적인 경우가 있다는것을 알게됨.
 
 - network 
   - 간단한 network에서 점점 레이어를 늘려나감. 많은 변화를 주지는 못하였음.
@@ -91,10 +92,13 @@ title: "NIPS 2017:Learn to Run 참가기"
 [https://github.com/qutrino/nips-2017-learn-to-run](https://github.com/qutrino/nips-2017-learn-to-run)
 
 
-# 결과 제출 
+# 학습과정 및 결과제출 
 
-- 위의 파라미터 및 네트워크 변경의 결과로 약 15,000 episode에 35~39m를 달리는 최고 기록은 나왔으나, 1/3정도는 중간에 넘어졌기 때문에 30m대의 평균기록은 얻지 못하였음. 학습시간을 더 길게 해도 기록이 나아지지 않고 나빠지는 상태가 이어짐.
-- 학습 중간에 주기적으로 weight를 저장하여, 그 저장된 weight를 가지고, noise가 없는 환경에서 테스트 후 가장 좋은 결과를 준 5개를 submission하였음.(2라운드)   
+- 초반 몇 발자국(~7m)을 걷게 만드는 세팅을 만드는 부분이 제일 힘들었음. DDPG 코드의 자잘한 버그를 고치고, 노이즈 프로세스 및 크기를 수없이 조절한 후에야 돌아가는 세팅을 찾게 됨. 
+- 위의 파라미터 및 네트워크 변경의 결과로 약 15,000 episode정도에 35~39m를 달리는 최고 기록은 나왔으나, 1/3정도는 중간에 넘어졌기 때문에 30m대의 평균기록은 얻지 못하였음. 학습시간을 더 길게 해도 기록이 나아지지 않고 나빠지는 상태가 이어짐.
+- 학습 중간에 주기적으로 weight를 저장하여, 그 저장된 weight를 가지고, noise가 없는 환경에서 테스트 후 가장 좋은 결과를 준 5개를 submission하였음.(2라운드)  
+- [2라운드 평가결과](https://www.crowdai.org/challenges/nips-2017-learning-to-run/leaderboards) 10회 평균 24.80m로 19위의 성적을 기록함.
+- 1위의 경우 45.97m라는 엄청난 기록을 냄.   
 
 # 그 밖의 시도
 - batch norm. 은 시도해 보지않음. (RL에서 잘 된다는 보고가 많지 않아서.)
