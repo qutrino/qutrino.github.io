@@ -230,7 +230,7 @@
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">conda create <span class="nt">--name</span> test36 <span class="nv">python</span><span class="o">=</span>3.6
 <span class="nb">source </span>activate test36</code></pre></figure>
 
-<p>pip download 명령으로 원하는 패키지 저장</p>
+<p>pip download 명령으로 원하는 패키지 저장. 의존적인 다른 패키지도 같이 저장됨.</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">(</span>test36<span class="o">)</span> pip download mpi4py <span class="nt">-d</span> ./mpi4py
 <span class="o">(</span>test36<span class="o">)</span> pip download Theano <span class="nt">-d</span> ./theano

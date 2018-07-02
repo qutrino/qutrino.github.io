@@ -21,7 +21,7 @@ conda create --name test36 python=3.6
 source activate test36
 {% endhighlight %}
 
-pip download 명령으로 원하는 패키지 저장
+pip download 명령으로 원하는 패키지 저장. 의존적인 다른 패키지도 같이 저장됨.
 {% highlight bash %}
 (test36) pip download mpi4py -d ./mpi4py
 (test36) pip download Theano -d ./theano
