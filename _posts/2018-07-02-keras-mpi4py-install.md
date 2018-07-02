@@ -30,7 +30,7 @@ pip download 명령으로 원하는 패키지 저장. 의존적인 다른 패키
 
 Remote 컴퓨터 (클러스터)로 복사
 {% highlight bash %}
-scp -r ./mpipy ./theano ./keras XX@YY:~/ZZZ
+scp -r ./mpi4py ./theano ./keras XX@YY:~/ZZZ
 {% endhighlight %}
 
 ## Remote 클러스터에 패키지 설치 
