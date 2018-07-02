@@ -219,12 +219,12 @@
   <li>KISTI cpu 클러스터에 keras ( theano backend ) 와 mpi4py 설치방법입니다. 보안상이유로 자세한 버전등은 xxx로 표시하였습니다. 서버의 OS/커널버전/glibc 버전이 낮아, 로컬에서 glibc 버전업을해서 pytorch 등을 설치해보긴 하였는데, mpi4py와 동시에 설치하기가 쉽지 않아서 keras (theano backend)를 사용하기로 하였습니다.</li>
 </ul>
 
-<h3 id="bashrc-편집">.bashrc 편집</h3>
+<h3 id="remote-클러스터의-bashrc-편집">Remote 클러스터의 .bashrc 편집</h3>
 <p>다음 라인 추가. 가능한한 높은 버전 선택하였음.</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">module load compiler/gcc-XXX mpi/mvapich2-XXX applic/python-3.6</code></pre></figure>
 
-<h3 id="local-pc-에서-python-패키지-다운로드-후-전송">local pc 에서 python 패키지 다운로드 후 전송</h3>
+<h3 id="local-pc에서-python-패키지-다운로드-후-전송">Local PC에서 python 패키지 다운로드 후 전송</h3>
 <p>conda 등으로 리모트 컴퓨터와 유사한 환경구성</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">conda create <span class="nt">--name</span> test36 <span class="nv">python</span><span class="o">=</span>3.6
@@ -236,11 +236,11 @@
 <span class="o">(</span>test36<span class="o">)</span> pip download Theano <span class="nt">-d</span> ./theano
 <span class="o">(</span>test36<span class="o">)</span> pip download kears <span class="nt">-d</span> ./keras</code></pre></figure>
 
-<p>리모트 컴퓨터로 복사</p>
+<p>Remote 컴퓨터 (클러스터)로 복사</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">scp <span class="nt">-r</span> ./mpipy ./theano ./keras XX@YY:~/ZZZ</code></pre></figure>
 
-<h3 id="리모트-시스템에-설치">리모트 시스템에 설치</h3>
+<h3 id="remote-클러스터에-패키지-설치">Remote 클러스터에 패키지 설치</h3>
 <p>다운 받은 각 디렉토리로 들어가서 패키지를 개인계정에 설치</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">pip install <span class="nt">--user</span> mpi4py-3.0.0.tar.gz  <span class="nt">-f</span> ./ <span class="nt">--no-index</span>
